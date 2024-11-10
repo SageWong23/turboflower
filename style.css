@@ -1,0 +1,542 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --color-border: #ffffff5d;
+  --color-font: #ffffff;
+
+  --leftColumn-text-align: left;
+}
+/* reset
+------------------------------
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* body background
+------------------------------
+*/
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url(https://turboflower.com/wp-content/uploads/dark-bg-scaled.webp);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+/* wrapper and wrapper grid
+------------------------------
+*/
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+}
+.wrapper-grid {
+  display: grid;
+  grid-template-columns: 0.67fr 0.33fr;
+  grid-template-rows: 1fr 1fr auto 1fr 1fr;
+  gap: 32px;
+  height: 100%;
+  width: 100%;
+}
+
+/* left column
+----------------------------------------------------------
+*/
+.left-column {
+  border-radius: 30px;
+  grid-row-start: 1;
+  grid-row-end: -1;
+  display: flex;
+  align-items: center;
+}
+/* left column top container
+----------------------------------------------------------
+*/
+.top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding-left: 2rem;
+  row-gap: 1rem;
+}
+.top-container h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  color: var(--color-font);
+  text-align: var(--leftColumn-text-align);
+  text-shadow: 0 0 10px var(--color-font);
+}
+.top-container h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--color-font);
+  text-align: var(--leftColumn-text-align);
+  text-shadow: 0 0 10px var(--color-font);
+}
+.top-container img {
+  height: 128px;
+  width: 128px;
+  border-radius: 100px;
+  border: solid 1px var(--color-border);
+}
+.bottom-container {
+  padding-top: 3rem;
+  padding-left: 2rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  align-items: end;
+}
+.bottom-container div {
+  background: #d1d1d14f;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: solid var(--color-border) 1px;
+  padding: 1em;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+.bottom-container div svg {
+  width: 32px;
+}
+.bottom-container div::before {
+  content: attr(data-social);
+  position: absolute;
+  background-color: var(--accent-color);
+  border: solid var(--color-border) 1px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(0px);
+  opacity: 0;
+  transition: 300ms ease-in-out;
+}
+.bottom-container div:hover {
+  background-color: var(--accent-color);
+  fill: white;
+}
+.bottom-container div:hover::before {
+  opacity: 1;
+  transform: translateY(-60px);
+}
+
+/* aboutPopup, socialPopup, contactPopup button wrapper 
+----------------------------------------------------------
+*/
+.socialButtonStyle,
+.aboutButtonStyle,
+.contactButtonStyle {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* aboutPopupStyle, socialPopup, contactPopup background 
+----------------------------------------------------------
+*/
+.socialPopupStyle,
+.aboutPopupStyle,
+.contactPopupStyle {
+  display: flex;
+  opacity: 0;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+/* aboutPopup, socialPopup, contactPopup Content area 
+----------------------------------------------------------
+*/
+.socialPopupContent {
+  position: relative;
+  background: #d1d1d14f;
+  margin: auto;
+  padding: 0;
+  border: solid var(--color-border) 1px;
+  border-radius: 40px;
+  width: 50vh;
+  height: 50vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: default;
+}
+.aboutPopupContent {
+  position: relative;
+  background: #d1d1d14f;
+  margin: auto;
+  padding: 0;
+  border: solid var(--color-border) 1px;
+  border-radius: 40px;
+  width: 60vh;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: default;
+}
+.contactPopupContent {
+  position: relative;
+  background: #d1d1d14f;
+  margin: auto;
+  padding: 0;
+  border: solid var(--color-border) 1px;
+  border-radius: 40px;
+  width: 60vh;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: default;
+}
+
+/* aboutPopup, socialPopup, contactPopup Content 
+----------------------------------------------------------
+*/
+.socialPopupContentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+  height: 100%;
+}
+.socialPopupContentGrid div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.socialPopupContentGrid div svg {
+  width: 50px;
+  height: 50px;
+  fill: white;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+.socialPopupContentGrid div svg:hover {
+  transform: scale(1.2);
+}
+.socialPopupContentGrid div h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--color-font);
+  line-height: 1.5rem;
+  margin: 0;
+}
+.aboutPopupContentGrid {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+.aboutPopupContent h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--color-font);
+}
+.aboutPopupContent p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--color-font);
+}
+.aboutPopupContent img {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+}
+.contactPopupContentGrid {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+.contactPopupContent h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--color-font);
+}
+.contactPopupContent p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--color-font);
+}
+/* aboutPopup, socialPopup close button 
+----------------------------------------------------------
+*/
+.socialClose {
+  position: absolute;
+  left: 50vh;
+  top: -2rem;
+  color: var(--color-font);
+  transition: 150ms ease-in-out;
+}
+.aboutClose,
+.contactClose {
+  position: absolute;
+  left: 60vh;
+  top: -2rem;
+  color: var(--color-font);
+  transition: 150ms ease-in-out;
+}
+.socialClose:hover,
+.socialClose:focus,
+.aboutClose:hover,
+.aboutClose:focus,
+.contactClose:hover,
+.contactClose:focus {
+  transform: scale(1.5);
+  text-decoration: none;
+  cursor: pointer;
+}
+.socialClose svg,
+.aboutClose svg,
+.contactClose svg {
+  height: 2rem;
+}
+/* Contact form
+----------------------------------------------------------
+*/
+.form-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--color-font);
+}
+.formLayout {
+  display: flex;
+  flex-direction: column;
+}
+.formLayout div:nth-child(odd) {
+  padding-top: 32px;
+}
+#name,
+#email,
+#message {
+  width: 100%;
+  border-radius: 20px;
+  border: solid var(--color-border) 1px;
+  padding-left: 0.5rem;
+  background-color: #fff;
+}
+/* Carousel
+----------------------------------------------------------
+*/
+.d-block {
+  border-radius: 30px;
+}
+/* Banner backgrounds
+----------------------------------------------------------
+ */
+.banner-1,
+.banner-2,
+.banner-3,
+.banner-4 {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  background-color: #ffffff38;
+  transition: 300ms ease-in-out;
+  border-radius: 30px;
+  position: relative;
+  min-height: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+.banner-1 img,
+.banner-2 img,
+.banner-3 img,
+.banner-4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+  border: solid var(--color-border) 1px;
+  transition: 300ms ease-in-out;
+}
+.banner-1::before {
+  content: "Learn More ▸";
+  transition: 300ms ease-in-out;
+  opacity: 0;
+  transform: translateX(-50px);
+  color: var(--color-font);
+  position: absolute;
+  padding: 16px;
+  pointer-events: none;
+}
+.banner-2::before {
+  content: "View More ▸";
+  transition: 300ms ease-in-out;
+  opacity: 0;
+  transform: translateX(-50px);
+  color: var(--color-font);
+  position: absolute;
+  padding: 16px;
+  pointer-events: none;
+}
+.banner-3::before {
+  content: "See More ▸";
+  transition: 300ms ease-in-out;
+  opacity: 0;
+  transform: translateX(-50px);
+  color: var(--color-font);
+  position: absolute;
+  padding: 16px;
+  pointer-events: none;
+}
+.banner-4::before {
+  content: "See More ▸";
+  transition: 300ms ease-in-out;
+  opacity: 0;
+  transform: translateX(-50px);
+  color: var(--color-font);
+  position: absolute;
+  padding: 16px;
+  pointer-events: none;
+}
+.banner-1:hover,
+.banner-2:hover,
+.banner-3:hover,
+.banner-4:hover {
+  transform: scale(1);
+}
+.banner-1 img:hover,
+.banner-2 img:hover,
+.banner-3 img:hover,
+.banner-4 img:hover {
+  z-index: -1;
+  filter: brightness(0.75);
+  transform: scale(1.1);
+}
+.banner-1:hover::before,
+.banner-2:hover::before,
+.banner-3:hover::before,
+.banner-4:hover::before {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* max-width 1200x 
+----------------------------------------------------------
+*/
+@media only screen and (max-width: 1200px) {
+  .wrapper-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .left-column {
+    width: 100%;
+  }
+  .right-column,
+  .banner-1,
+  .banner-2,
+  .banner-3,
+  .banner-4,
+  #carouselExampleIndicators {
+    display: none;
+  }
+}
+/* max-width 768x 
+----------------------------------------------------------
+*/
+@media only screen and (max-width: 768px) {
+  .aboutPopupContent,
+  .contactPopupContent,
+  .socialPopupContent {
+    width: 45dvh;
+  }
+  .socialPopupContent {
+    height: 45dvh;
+  }
+  .aboutClose,
+  .contactClose,
+  .socialClose {
+    left: 45dvh;
+  }
+  div.top-container h1 {
+    font-size: 2.5rem;
+  }
+  div.top-container h3 {
+    font-size: 1rem;
+  }
+  .socialPopupContentGrid div svg {
+    width: 32px;
+    height: 32px;
+  }
+  .aboutPopupContent img {
+    height: 3rem;
+    width: 3rem;
+  }
+  .aboutPopupContent h2,
+  .contactPopupContent h2 {
+    font-size: 2rem;
+  }
+  .aboutPopupContent p,
+  .contactPopupContent p {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .socialPopupStyle,
+  .aboutPopupStyle,
+  .contactPopupStyle {
+    height: 100dvh;
+  }
+  .wrapper {
+    height: 100dvh;
+  }
+  .aboutPopupContentGrid,
+  .contactPopupContentGrid {
+    padding: 24px;
+  }
+
+  .bottom-container div {
+    height: 48px;
+    width: 48px;
+    justify-content: center;
+    align-content: center;
+  }
+  .bottom-container div svg {
+    width: 24px;
+  }
+  .socialPopupContentGrid div h5 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .formLayout div:nth-child(odd) {
+    padding-top: 8px;
+  }
+}

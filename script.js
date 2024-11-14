@@ -60,3 +60,19 @@ window.addEventListener("click", function (event) {
     contactPopup.style.zIndex = "-2";
   }
 });
+
+function rightColumnShowHide() {
+  var div1 = document.getElementById("div1");
+  var div2 = document.getElementById("div2");
+  if (div1.style.opacity === "0") {
+    div1.style.opacity = "1";
+    div1.style.zIndex = "1";
+    div2.style.opacity = "0";
+    div2.style.zIndex = "-1";
+  } else {
+    div1.style.opacity = "0";
+    div1.style.zIndex = "-1";
+    div2.style.opacity = "1";
+    div2.style.zIndex = "1";
+  }
+}
